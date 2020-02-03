@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:300,600);
+@import url(https://fonts.googleapis.com/css?family=Carrois+Gothic+SC);
+html {
+  font-size: 100%;
+}
+
+body {
+  background: #232323;
+  color: #eee;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 130%;
+  line-height: 1.5;
+}
+
+.center {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+.current-vals {
+  color: #FF8A80;
+}
+
+.vals {
+  color: #40C4FF;
+}
+
+.hues {
+  color: #4DD0E1;
+}
+
+.sat {
+  color: #CCFF90;
+}
+
+.light {
+  color: #E1BEE7;
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 1em auto;
+  text-align: center;
+}
+
+.circle {
+  display: inline-block;
+  margin: 1em;
+  border-style: solid;
+  border-width: 0 2em 4em 2em;
+  border-color: transparent;
+  position: relative;
+}
+
+.circle:not(:last-child) {
+  margin-right: 1em;
+}
+
+.colors p {
+  margin: 1em;
+  font-family: 'Carrois Gothic SC', sans-serif;
+  font-size: 1rem;
+}
+
+.gen_btn {
+  border: none;
+  background: transparent;
+  border: .2rem solid #FF8A80;
+  padding: .5rem 1rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 2rem 0;
+  transition: all .3s ease-in-out;
+}
+
+.gen_btn:hover,
+.gen_btn:focus {
+  background: #FF8A80;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    font-size: 100%;
+  }
+  .colors {
+    font-size: 80%;
+  }
+}
+
+@media screen and (min-width: 2300px) {
+  body {
+    font-size: 200%;
+  }
+}
+</style>
+
+<body onclick="generate()">
+
+    <div class="center">
+        <button id="generate_btn" class="gen_btn">ย้อมผมสีไรดี</button>
+    </div>
+
+    <div id="colors" class="colors"></div>
+
+    <script>
+        var elColors = document.getElementById('colors');
+        var genBtn = document.getElementById('generate_btn');
+        var colors = '';
+
+        /* generates a value while allowing the customization of the minimum and maximum values*/
+        function randomVal(min, max) {
+            return Math.floor(Math.random() * (max - min) + 1) + min;
+        }
+
+        function generate() {
+            for (var i = 0; i < 1; i++) {
+                var hsl = 'hsl(' + randomVal(0, 360) + ', ' + randomVal(30, 95) + '%,  ' + randomVal(30, 80) + '%)';
+                colors += '<div class="\random-container\"><div class="\circle\"  style=\"border-bottom-color: ' + hsl + '\">';
+                elColors.innerHTML = colors;
+                
+                
+            }
+
+            colors = '';
+        }
+
+        generate();
+        genBtn.addEventListener('click', generate);
+    </script>
+
+</body>
+
+</html>
